@@ -18,4 +18,4 @@ Associação dos Escoteiros de Portugal - http://escoteiros.pt/
 
 Uso e alteração desta aplicação
 =
-No caso de uso desta aplicação para fins semelhantes agradeço a inclusão, de alguma forma, do respetivo programador(ver contacto abaixo) e/ou da Associação em representação(neste caso, a Associação dos Escoteiros de Portugal).
+No caso de uso desta aplicação para fins semelhantes agradeço a inclusão, de alguma forma, do respetivo programador(ver contacto em cima) e/ou da Associação em representação(neste caso, a Associação dos Escoteiros de Portugal).
