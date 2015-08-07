@@ -12,9 +12,15 @@ lt application files
 bin/
 gen/
 target/
+.gradle/
+.idea/
+app/build/
+gradle/
+build/
 
 # Local configuration file (sdk path, etc)
 local.properties
+import-summary.txt
 .gitattributes
 
 # Eclipse project files

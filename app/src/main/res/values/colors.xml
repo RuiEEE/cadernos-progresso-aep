@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!-- 
+	    100% — FF
+		95% — F2
+		90% — E6
+		85% — D9
+		80% — CC
+		75% — BF
+		70% — B3
+		65% — A6
+		60% — 99
+		55% — 8C
+		50% — 80
+		45% — 73
+		40% — 66
+		35% — 59
+		30% — 4D
+		25% — 40
+		20% — 33
+		15% — 26
+		10% — 1A
+		5% — 0D
+		0% — 00
+     -->
+    
+    <color name="white">#ffffff</color>
+    <color name="white_80">#CCFFFFFF</color>
+    <color name="white_70">#B3FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="black_70">#B3000000</color>
+    
+    <color name="opacity_dark_grey">#B47B7B7B</color>
+    
+    <color name="dark_grey">#7b7b7b</color>
+    <color name="dark_grey_75">#BF7b7b7b</color>
+    
+    <color name="lighter_grey">#dddddd</color>
+    <color name="lightest_grey">#f8f8f8</color>
+    <color name="comment_grey">#a8a8a8</color>
+    <color name="comment_gray">#a8a8a8</color>
+    
+    <color name="aep_dark_blue">#3C4285</color>
+    <color name="aep_green">#BDD100</color>
+    
+    <color name="alc">#FFC400</color>
+    <color name="tes">#038857</color>
+    <color name="tex">#3C4285</color>
+    <color name="cla">#F44336</color>
+    
+    <color name="notification_light_green">#97b8a9</color>
+	<color name="notification_bg_grey">#ECECEC</color>
+	
+	<color name="new_friend_background">#1A66CC99</color>
+	
+	<color name="background_tab_pressed">#6633B5E5</color>
+</resources>
