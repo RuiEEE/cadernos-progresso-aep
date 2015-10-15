@@ -12,8 +12,7 @@ import android.widget.ImageView;
 
 public class HomeFragment extends Fragment implements OnClickListener {
 	
-	ImageView ivAlc,ivTes,ivTex,ivCla;
-	ImageView ivEspAlc,ivEspTes,ivEspTex,ivEspCla;
+
 	MainActivity act;
 	
 	@Override
@@ -22,8 +21,8 @@ public class HomeFragment extends Fragment implements OnClickListener {
 		View v = inflater.inflate(R.layout.fragment_home, container, false);
 		
 		initVariables(v);
-		
-		getActivity().getActionBar().setTitle("Cadernos de Progresso - AEP");
+
+		act.getSupportActionBar().setTitle("Cadernos de Progresso - AEP");
 		
 		return v;
 	}

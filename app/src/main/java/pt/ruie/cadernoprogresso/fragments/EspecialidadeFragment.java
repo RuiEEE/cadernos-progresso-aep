@@ -7,24 +7,13 @@ import pt.ruie.cadernoprogresso.ProvaAdapter;
 import pt.ruie.cadernoprogresso.R;
 import pt.ruie.cadernoprogresso.models.Divisao;
 import pt.ruie.cadernoprogresso.models.Especialidade;
-import pt.ruie.cadernoprogresso.models.Prova;
 import pt.ruie.cadernoprogresso.models.ProvaEspecialidade;
-import android.content.Context;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v4.widget.CursorAdapter;
-import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 public class EspecialidadeFragment extends Fragment {
 	

@@ -64,7 +64,5 @@ public class CadernoFragment extends Fragment {
 		super.onResume();
 		updateListView();
 	}
-	
-	
 
 }

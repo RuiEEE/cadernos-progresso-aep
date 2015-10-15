@@ -1,18 +1,20 @@
 package pt.ruie.cadernoprogresso.fragments;
 
+import pt.ruie.cadernoprogresso.MainActivity;
 import pt.ruie.cadernoprogresso.R;
 import pt.ruie.cadernoprogresso.models.Divisao;
 import android.app.ActionBar;
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -112,7 +114,7 @@ public class NavigationDrawerFragment extends Fragment {
 			}
 		});
 		
-		mNavigationAdapter = new NavigationAdapter(getActionBar().getThemedContext(),new String[] {
+		mNavigationAdapter = new NavigationAdapter(getActivity(),new String[] {
 			getString(R.string.title_section1),
 			getString(R.string.title_section2),
 			getString(R.string.title_section3),
@@ -147,25 +149,15 @@ public class NavigationDrawerFragment extends Fragment {
 		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 		// set up the drawer's list view with items and click listener
 
-		ActionBar actionBar = getActionBar();
-		actionBar.setDisplayHomeAsUpEnabled(true);
-		actionBar.setHomeButtonEnabled(true);
+		((AppCompatActivity)getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
+		((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
 		// ActionBarDrawerToggle ties together the the proper interactions
 		// between the navigation drawer and the action bar app icon.
-		mDrawerToggle = new ActionBarDrawerToggle(
-				getActivity(), /* host Activity */
-				mDrawerLayout, /* DrawerLayout object */
-				R.drawable.ic_drawer, /* nav drawer image to replace 'Up' caret */
-				R.string.navigation_drawer_open, /*
-												 * "open drawer" description for
-												 * accessibility
-												 */
-				R.string.navigation_drawer_close /*
-												 * "close drawer" description
-												 * for accessibility
-												 */
-				) {
+		mDrawerToggle = new ActionBarDrawerToggle(getActivity(),mDrawerLayout,
+				((MainActivity)getActivity()).mToolbar,
+				R.string.navigation_drawer_open,
+				R.string.navigation_drawer_close) {
 					@Override
 					public void onDrawerClosed(View drawerView) {
 						super.onDrawerClosed(drawerView);
@@ -173,8 +165,7 @@ public class NavigationDrawerFragment extends Fragment {
 							return;
 						}
 
-						getActivity().invalidateOptionsMenu(); // calls
-																// onPrepareOptionsMenu()
+						getActivity().invalidateOptionsMenu();
 					}
 
 					@Override
@@ -185,24 +176,17 @@ public class NavigationDrawerFragment extends Fragment {
 						}
 
 						if (!mUserLearnedDrawer) {
-							// The user manually opened the drawer; store this
-							// flag to prevent auto-showing
-							// the navigation drawer automatically in the
-							// future.
+
 							mUserLearnedDrawer = true;
-							SharedPreferences sp = PreferenceManager
-									.getDefaultSharedPreferences(getActivity());
+							SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
 							sp.edit().putBoolean(PREF_USER_LEARNED_DRAWER, true).apply();
 						}
 
-						getActivity().invalidateOptionsMenu(); // calls
-																// onPrepareOptionsMenu()
+						getActivity().invalidateOptionsMenu();
 					}
 				};
 
-		// If the user hasn't 'learned' about the drawer, open it to introduce
-		// them to the drawer,
-		// per the navigation drawer design guidelines.
+
 		if (!mUserLearnedDrawer && !mFromSavedInstanceState) {
 			mDrawerLayout.openDrawer(mFragmentContainerView);
 		}
@@ -216,6 +200,7 @@ public class NavigationDrawerFragment extends Fragment {
 		});
 
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
+
 	}
 
 	private void selectItem(int position) {
@@ -285,10 +270,6 @@ public class NavigationDrawerFragment extends Fragment {
 		}
 
 		return super.onOptionsItemSelected(item);
-	}
-
-	private ActionBar getActionBar() {
-		return getActivity().getActionBar();
 	}
 	
 	public class NavigationAdapter extends ArrayAdapter<String> {

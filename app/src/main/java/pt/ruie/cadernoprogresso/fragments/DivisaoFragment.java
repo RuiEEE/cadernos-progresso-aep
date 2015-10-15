@@ -46,16 +46,16 @@ public class DivisaoFragment extends Fragment {
 		
 		switch(divisao){
 		case Divisao.ALCATEIA:
-			getActivity().getActionBar().setTitle("Alcateia");
+			act.getSupportActionBar().setTitle("Alcateia");
 			break;
 		case Divisao.TES:
-			getActivity().getActionBar().setTitle("Tribo de Escoteiros");
+			act.getSupportActionBar().setTitle("Tribo de Escoteiros");
 			break;
 		case Divisao.TEX:
-			getActivity().getActionBar().setTitle("Tribo de Exploradores");
+			act.getSupportActionBar().setTitle("Tribo de Exploradores");
 			break;
 		case Divisao.CLA:
-			getActivity().getActionBar().setTitle("Clã");
+			act.getSupportActionBar().setTitle("Clã");
 			break;
 		}
 		

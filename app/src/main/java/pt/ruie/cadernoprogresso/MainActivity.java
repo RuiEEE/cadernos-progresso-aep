@@ -8,13 +8,14 @@ import pt.ruie.cadernoprogresso.models.Divisao;
 import android.app.ActionBar;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends FragmentActivity
+public class MainActivity extends AppCompatActivity
 		implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 	
 	public static final int HOME = 1;
@@ -22,6 +23,8 @@ public class MainActivity extends FragmentActivity
 	public static final int TES = 3;
 	public static final int TEX = 4;
 	public static final int CLA = 5;
+
+	public Toolbar mToolbar;
 	
 	public String currentTag = "home";
 
@@ -42,10 +45,12 @@ public class MainActivity extends FragmentActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		mNavigationDrawerFragment = (NavigationDrawerFragment)getFragmentManager().findFragmentById(R.id.navigation_drawer);
+		mNavigationDrawerFragment = (NavigationDrawerFragment)getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
 		mTitle = getTitle();
-		
-		getActionBar().setDisplayShowHomeEnabled(false);
+
+		mToolbar = (Toolbar)findViewById(R.id.toolbar);
+		setSupportActionBar(mToolbar);
+//		getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 		// Set up the drawer.
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer,(DrawerLayout) findViewById(R.id.drawer_layout));
