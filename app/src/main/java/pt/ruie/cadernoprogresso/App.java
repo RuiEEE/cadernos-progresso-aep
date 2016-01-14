@@ -7,31 +7,18 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 
 public class App extends Application {
-	
-	DBHelper mDatabase;
+
+	MyDatabase mDatabase;
 	static public boolean DEBUG = false;
 	
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		
-		mDatabase = new DBHelper(this);
-		try {
-			
-			if(PreferenceManager.getDefaultSharedPreferences(this).getInt("provas_db_version", 0) < DBHelper.DB_VERSION){
-				Log.d("App","doing the update?");
-				mDatabase.forceUpdate();
-			}
-			mDatabase.createDatabase();
-			mDatabase.openDataBase();
-			
-		} catch (IOException e) { 
-			e.printStackTrace();
-		}
+		mDatabase = new MyDatabase(this);
 		
 	}
 	
-	public DBHelper getDB(){
+	public MyDatabase getDB(){
 		return mDatabase;
 	}
 	

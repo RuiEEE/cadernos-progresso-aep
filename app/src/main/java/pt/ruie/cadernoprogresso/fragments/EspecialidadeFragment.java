@@ -24,6 +24,8 @@ public class EspecialidadeFragment extends Fragment {
 	
 	ListView lv;
 	ProvaAdapter mAdapter;
+
+	MainActivity mActivity;
 	
 	Especialidade e;
 	int divisao;
@@ -37,6 +39,8 @@ public class EspecialidadeFragment extends Fragment {
 		act = (MainActivity)getActivity();
 		app = (App)act.getApplication();
 		fragment_view = inflater.inflate(R.layout.fragment_list, container, false);
+
+		mActivity = (MainActivity)getActivity();
 		
 		especialidade_id = getArguments().getInt("id");
 		
@@ -47,16 +51,16 @@ public class EspecialidadeFragment extends Fragment {
 		
 		switch(e.getDivisao()){
 		case Divisao.ALCATEIA:
-			getActivity().getActionBar().setTitle("Alcateia - Esp. "+e.getLabel());
+			mActivity.setActionBarTitle("Alcateia - Esp. " + e.getLabel());
 			break;
 		case Divisao.TES:
-			getActivity().getActionBar().setTitle("Tribo de Escoteiros - Esp. "+e.getLabel());
+			mActivity.setActionBarTitle("Tribo de Escoteiros - Esp. " + e.getLabel());
 			break;
 		case Divisao.TEX:
-			getActivity().getActionBar().setTitle("Tribo de Exploradores - Esp. "+e.getLabel());
+			mActivity.setActionBarTitle("Tribo de Exploradores - Esp. " + e.getLabel());
 			break;
 		case Divisao.CLA:
-			getActivity().getActionBar().setTitle("Clã - Esp. "+e.getLabel());
+			mActivity.setActionBarTitle("Clã - Esp. "+e.getLabel());
 			break;
 		}
 		

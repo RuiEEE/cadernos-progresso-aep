@@ -30,10 +30,12 @@ public class ProvaAdapter extends CursorAdapter {
 		int id = cursor.getInt(cursor.getColumnIndex("id"));
 		String titulo = cursor.getString(cursor.getColumnIndex("titulo"));
 		String desc = cursor.getString(cursor.getColumnIndex("descricao"));
-		
+
+		int assinada = cursor.getInt(cursor.getColumnIndex("is_concluded"));
+
 //		titulo = titulo.replaceAll("<br>", "\n");
 		
-		holder.tvTitle.setText(id+" - "+Html.fromHtml(titulo));
+		holder.tvTitle.setText(id+" - "+Html.fromHtml(titulo)+" esta?"+assinada);
 		holder.tvDesc.setText(Html.fromHtml(desc));
 		
 		switch (divisao) {

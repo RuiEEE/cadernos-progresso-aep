@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -54,6 +55,11 @@ public class MainActivity extends AppCompatActivity
 
 		// Set up the drawer.
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer,(DrawerLayout) findViewById(R.id.drawer_layout));
+
+	}
+
+	public void setActionBarTitle(String title){
+		mToolbar.setTitle(title);
 	}
 
 	@Override
@@ -167,6 +173,7 @@ public class MainActivity extends AppCompatActivity
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
+		Log.d("Main Act", "On Options selected");
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
 			return true;
