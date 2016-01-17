@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity
 	public static final int TEX = 4;
 	public static final int CLA = 5;
 
+	public App app;
+
 	public Toolbar mToolbar;
 	
 	public String currentTag = "home";
@@ -46,6 +48,7 @@ public class MainActivity extends AppCompatActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		app = (App)getApplication();
 		mNavigationDrawerFragment = (NavigationDrawerFragment)getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
 		mTitle = getTitle();
 

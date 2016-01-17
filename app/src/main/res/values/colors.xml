@@ -43,6 +43,8 @@
     
     <color name="aep_dark_blue">#3C4285</color>
     <color name="aep_green">#BDD100</color>
+
+	<color name="prova_concluida">#C8E6C9</color>
     
     <color name="alc">#FFC400</color>
     <color name="tes">#038857</color>

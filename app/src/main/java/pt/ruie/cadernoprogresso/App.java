@@ -1,10 +1,6 @@
 package pt.ruie.cadernoprogresso;
 
-import java.io.IOException;
-
 import android.app.Application;
-import android.preference.PreferenceManager;
-import android.util.Log;
 
 public class App extends Application {
 

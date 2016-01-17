@@ -3,7 +3,10 @@ package pt.ruie.cadernoprogresso.models;
 import pt.ruie.cadernoprogresso.App;
 
 public class Desafio {
-	
+
+	public static final int ASSINADO = 1;
+	public static final int NAO_ASSINADO = 0;
+
 	App app;
 	int id;
 	String titulo;

@@ -9,9 +9,21 @@ public class Prova extends Desafio {
 	public Prova(App app,int id,String titulo,String descricao){
 		super(app,id,titulo,descricao);
 	}
-	
+
 	public static Cursor getProvas(App app,int divisao,int etapa){
 		return app.getDB().getReadableDatabase().rawQuery("SELECT * FROM PROVAS WHERE divisao="+divisao+" AND etapa="+etapa, null);
+	}
+
+	public void concluirProva(int id){
+		if(app == null)
+			return;
+
+	}
+
+	public void desconcluirProva(int id){
+		if(app == null)
+			return;
+
 	}
 
 	public boolean isConcluded(int divisao,int etapa){

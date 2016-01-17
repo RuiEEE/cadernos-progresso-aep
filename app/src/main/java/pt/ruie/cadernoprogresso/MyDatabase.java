@@ -1,8 +1,6 @@
 package pt.ruie.cadernoprogresso;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
@@ -12,7 +10,7 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 public class MyDatabase extends SQLiteAssetHelper {
 
     private static final String DATABASE_NAME = "provas";
-    private static final int DATABASE_VERSION = 6;
+    private static final int DATABASE_VERSION = 7;
 
     public Context context;
 
@@ -23,6 +21,5 @@ public class MyDatabase extends SQLiteAssetHelper {
         // you must ensure that this folder is available and you have permission
         // to write to it
         //super(context, DATABASE_NAME, context.getExternalFilesDir(null).getAbsolutePath(), null, DATABASE_VERSION);
-        setForcedUpgrade(6);
     }
 }
