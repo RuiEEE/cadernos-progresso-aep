@@ -150,8 +150,9 @@ public class NavigationDrawerFragment extends Fragment {
 		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 		// set up the drawer's list view with items and click listener
 
-		((AppCompatActivity)getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
-		((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+		android.support.v7.app.ActionBar actionBar = getActionBar();
+		actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setHomeButtonEnabled(true);
 
 		// ActionBarDrawerToggle ties together the the proper interactions
 		// between the navigation drawer and the action bar app icon.
@@ -202,6 +203,13 @@ public class NavigationDrawerFragment extends Fragment {
 
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
 
+	}
+
+	public void setUpBurgerMenu(int fragmentId, DrawerLayout drawerLayout, android.support.v7.app.ActionBarDrawerToggle drawerToggle) {
+		if (getActivity() != null) {
+			mFragmentContainerView = getActivity().findViewById(fragmentId);
+			mDrawerLayout = drawerLayout;
+		}
 	}
 
 	private void selectItem(int position) {
@@ -333,6 +341,10 @@ public class NavigationDrawerFragment extends Fragment {
 			View strip;
 		}
 		
+	}
+
+	private android.support.v7.app.ActionBar getActionBar() {
+		return ((AppCompatActivity) getActivity()).getSupportActionBar();
 	}
 
 	/**

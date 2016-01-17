@@ -187,7 +187,7 @@ public class EspecialidadeFragment extends Fragment {
 			else
 				ph.desassinar();
 
-			swapCursor(CursorCache.getInstance(act.app).getProvas(divisao,especialidade_id));
+			swapCursor(ProvaEspecialidade.getProvas(app, especialidade_id));
 			notifyDataSetChanged();
 		}
 
@@ -212,13 +212,13 @@ public class EspecialidadeFragment extends Fragment {
 			public void assinar(){
 				ContentValues cv = new ContentValues();
 				cv.put("is_concluded",1);
-				act.app.getDB().getReadableDatabase().update("provas",cv,"_id="+id,null);
+				act.app.getDB().getReadableDatabase().update("provas_especialidade",cv,"_id="+id,null);
 			}
 
 			public void desassinar(){
 				ContentValues cv = new ContentValues();
 				cv.put("is_concluded",0);
-				act.app.getDB().getReadableDatabase().update("provas",cv,"_id="+id,null);
+				act.app.getDB().getReadableDatabase().update("provas_especialidade",cv,"_id="+id,null);
 			}
 		}
 	}

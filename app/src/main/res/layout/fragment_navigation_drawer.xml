@@ -5,4 +5,5 @@
     android:background="#ffffff"
     android:choiceMode="singleChoice"
     android:dividerHeight="0dp"
+    android:fitsSystemWindows="true"
     tools:context="pt.ruie.cadernoprogresso.fragments.NavigationDrawerFragment" />

@@ -6,6 +6,7 @@ import pt.ruie.cadernoprogresso.fragments.HomeFragment;
 import pt.ruie.cadernoprogresso.fragments.NavigationDrawerFragment;
 import pt.ruie.cadernoprogresso.models.Divisao;
 import android.app.ActionBar;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -15,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity
 		implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -54,11 +56,11 @@ public class MainActivity extends AppCompatActivity
 
 		mToolbar = (Toolbar)findViewById(R.id.toolbar);
 		setSupportActionBar(mToolbar);
-//		getSupportActionBar().setDisplayShowHomeEnabled(true);
-
 		// Set up the drawer.
-		mNavigationDrawerFragment.setUp(R.id.navigation_drawer,(DrawerLayout) findViewById(R.id.drawer_layout));
 
+		DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+		mNavigationDrawerFragment.setUp(R.id.navigation_drawer,mDrawerLayout);
 	}
 
 	public void setActionBarTitle(String title){
