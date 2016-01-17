@@ -9,6 +9,7 @@
 # Java class files
 *.class
 
+
 # generated files
 bin/
 gen/
@@ -42,3 +43,5 @@ proguard/
 
 # Log Files
 *.log
+
+*.DS_Store

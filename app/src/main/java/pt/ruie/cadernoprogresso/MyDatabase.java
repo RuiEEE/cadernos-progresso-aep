@@ -22,4 +22,5 @@ public class MyDatabase extends SQLiteAssetHelper {
         // to write to it
         //super(context, DATABASE_NAME, context.getExternalFilesDir(null).getAbsolutePath(), null, DATABASE_VERSION);
     }
+
 }
