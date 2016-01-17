@@ -1,27 +1,26 @@
 package pt.ruie.cadernoprogresso.fragments;
 
 import pt.ruie.cadernoprogresso.App;
-import pt.ruie.cadernoprogresso.CursorCache;
 import pt.ruie.cadernoprogresso.MainActivity;
 import pt.ruie.cadernoprogresso.R;
 import pt.ruie.cadernoprogresso.models.Desafio;
 import pt.ruie.cadernoprogresso.models.Divisao;
+import pt.ruie.cadernoprogresso.models.Prova;
 
-import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.CursorAdapter;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -61,8 +60,7 @@ public class CadernoFragment extends Fragment {
 	}
 	
 	public void updateListView(){
-		CursorCache mCache = CursorCache.getInstance(app);
-		mProvaAdapter = new ChallengeAdapter(act, mCache.getProvas(divisao, etapa));
+		mProvaAdapter = new ChallengeAdapter(act, Prova.getProvas(app, divisao, etapa));
 		lv.setAdapter(mProvaAdapter);
 	}
 	
@@ -98,6 +96,7 @@ public class CadernoFragment extends Fragment {
             holder.tvTitle.setText(id+" - "+Html.fromHtml(titulo));
             holder.tvDesc.setText(Html.fromHtml(desc));
 
+            holder.check.setOnCheckedChangeListener(null);
             if(assinada == Desafio.ASSINADO){
                 holder.check.setChecked(true);
                 holder.rlBot.setBackgroundResource(R.drawable.round_bot_concl);
@@ -158,7 +157,7 @@ public class CadernoFragment extends Fragment {
             else
                 ph.desassinar();
 
-            swapCursor(CursorCache.getInstance(act.app).getProvas(divisao,etapa));
+            changeCursor(Prova.getProvas(app, divisao, etapa));
             notifyDataSetChanged();
         }
 
@@ -187,13 +186,13 @@ public class CadernoFragment extends Fragment {
             public void assinar(){
                 ContentValues cv = new ContentValues();
                 cv.put("is_concluded",1);
-                act.app.getDB().getReadableDatabase().update("provas",cv,"_id="+id,null);
+                act.app.getDB().getWritableDatabase().update("provas", cv, "_id=" + id, null);
             }
 
             public void desassinar(){
                 ContentValues cv = new ContentValues();
                 cv.put("is_concluded",0);
-                act.app.getDB().getReadableDatabase().update("provas",cv,"_id="+id,null);
+                act.app.getDB().getWritableDatabase().update("provas", cv, "_id=" + id, null);
             }
         }
     }

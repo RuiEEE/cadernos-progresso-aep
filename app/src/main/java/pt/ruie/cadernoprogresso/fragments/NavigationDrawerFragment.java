@@ -357,4 +357,16 @@ public class NavigationDrawerFragment extends Fragment {
 		 */
 		void onNavigationDrawerItemSelected(int position);
 	}
+
+	public void lockDrawer() {
+		mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, GravityCompat.START);
+	}
+
+	public void unlockDrawer() {
+		mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED, GravityCompat.START);
+	}
+
+	public boolean isDrawerLocked() {
+		return DrawerLayout.LOCK_MODE_LOCKED_CLOSED == mDrawerLayout.getDrawerLockMode(GravityCompat.START);
+	}
 }

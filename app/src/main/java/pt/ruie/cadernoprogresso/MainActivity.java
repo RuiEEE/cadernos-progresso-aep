@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -27,9 +28,12 @@ public class MainActivity extends AppCompatActivity
 	public static final int TEX = 4;
 	public static final int CLA = 5;
 
+	Fragment mCurrentFragment = null;
+
 	public App app;
 
 	public Toolbar mToolbar;
+	boolean isBackShown = false;
 	
 	public String currentTag = "home";
 
@@ -60,7 +64,7 @@ public class MainActivity extends AppCompatActivity
 
 		DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-		mNavigationDrawerFragment.setUp(R.id.navigation_drawer,mDrawerLayout);
+		mNavigationDrawerFragment.setUp(R.id.navigation_drawer, mDrawerLayout);
 	}
 
 	public void setActionBarTitle(String title){
@@ -69,12 +73,16 @@ public class MainActivity extends AppCompatActivity
 
 	@Override
 	public void onNavigationDrawerItemSelected(int position) {
+
+		if(mCurrentFragment instanceof EspecialidadeFragment){
+			onBackPressed();
+		}
 		swapFragment(position);
 	}
 	
 	public void swapFragment(int position){
 		FragmentManager fragmentManager = getSupportFragmentManager();
-		Fragment mFragment = null;
+		mCurrentFragment = null;
 		
 		Bundle b = new Bundle();
 		
@@ -82,63 +90,56 @@ public class MainActivity extends AppCompatActivity
 		
 		switch(position){
 		case HOME:
-			mFragment = new HomeFragment();
+			mCurrentFragment = new HomeFragment();
 			tag = "home";
 			break;
 		case ALCATEIA:
-			mFragment = new DivisaoFragment();
+			mCurrentFragment = new DivisaoFragment();
 			b.putInt("divisao", Divisao.ALCATEIA);
 			tag = "alc";
 			break;
 		case TES:
-			mFragment = new DivisaoFragment();
+			mCurrentFragment = new DivisaoFragment();
 			b.putInt("divisao", Divisao.TES);
 			tag = "tes";
 			break;
 		case TEX:
-			mFragment = new DivisaoFragment();
+			mCurrentFragment = new DivisaoFragment();
 			b.putInt("divisao", Divisao.TEX);
 			tag = "tex";
 			break;
 		case CLA:
-			mFragment = new DivisaoFragment();
+			mCurrentFragment = new DivisaoFragment();
 			b.putInt("divisao", Divisao.CLA);
 			tag = "cla";
 			break;
 		}
+
+		mCurrentFragment.setArguments(b);
 		
-		mFragment.setArguments(b);
-		
-		Fragment frag = fragmentManager.findFragmentByTag("especialidade");
-		if(frag != null){
-			fragmentManager.beginTransaction()
-			.remove(frag)
-			.replace(R.id.container, mFragment,tag)
+
+		fragmentManager.beginTransaction()
+			.replace(R.id.container, mCurrentFragment,tag)
 			.commit();
-		} else {
-			fragmentManager.beginTransaction()
-			.replace(R.id.container, mFragment,tag)
-			.commit();
-		}
 		
 		currentTag = tag;
 	}
 	
 	public void swapEspFragment(int id){
 		FragmentManager fragmentManager = getSupportFragmentManager();
-		Fragment mFragment = new EspecialidadeFragment();
+		mCurrentFragment = new EspecialidadeFragment();
 		
 		Bundle b = new Bundle();
 		b.putInt("id", id);
-		
-		mFragment.setArguments(b);
-		
+
+		mCurrentFragment.setArguments(b);
+
 		String tag = "especialidade";
 		
 		fragmentManager.beginTransaction()
-			.replace(R.id.container, mFragment,tag)
-			.addToBackStack(null)
-			.commit();
+			.replace(R.id.container, mCurrentFragment, tag)
+				.addToBackStack(null)
+				.commit();
 	}
 	
 	@Override
@@ -185,5 +186,15 @@ public class MainActivity extends AppCompatActivity
 		}
 		return super.onOptionsItemSelected(item);
 	}
+
+	public void lockNavigationDrawer() {
+		if(mNavigationDrawerFragment != null)
+			mNavigationDrawerFragment.lockDrawer();
+	}
+
+	public void unlockNavigationDrawer() {
+		mNavigationDrawerFragment.unlockDrawer();
+	}
+
 
 }

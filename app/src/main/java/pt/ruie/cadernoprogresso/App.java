@@ -14,7 +14,6 @@ public class App extends Application {
 		super.onCreate();
 		Fabric.with(this, new Crashlytics());
 		mDatabase = new MyDatabase(this);
-		
 	}
 	
 	public MyDatabase getDB(){

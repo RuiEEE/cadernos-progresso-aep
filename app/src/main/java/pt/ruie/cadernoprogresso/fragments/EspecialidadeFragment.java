@@ -1,7 +1,6 @@
 package pt.ruie.cadernoprogresso.fragments;
 
 import pt.ruie.cadernoprogresso.App;
-import pt.ruie.cadernoprogresso.CursorCache;
 import pt.ruie.cadernoprogresso.MainActivity;
 import pt.ruie.cadernoprogresso.R;
 import pt.ruie.cadernoprogresso.models.Desafio;
@@ -9,11 +8,10 @@ import pt.ruie.cadernoprogresso.models.Divisao;
 import pt.ruie.cadernoprogresso.models.Especialidade;
 import pt.ruie.cadernoprogresso.models.ProvaEspecialidade;
 
-import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.CursorAdapter;
@@ -23,7 +21,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -126,6 +123,7 @@ public class EspecialidadeFragment extends Fragment {
 			holder.tvTitle.setText(id+" - "+ Html.fromHtml(titulo));
 			holder.tvDesc.setText(Html.fromHtml(desc));
 
+			holder.check.setOnCheckedChangeListener(null);
 			if(assinada == Desafio.ASSINADO){
 				holder.check.setChecked(true);
 				holder.rlBot.setBackgroundResource(R.drawable.round_bot_concl);
@@ -211,14 +209,14 @@ public class EspecialidadeFragment extends Fragment {
 
 			public void assinar(){
 				ContentValues cv = new ContentValues();
-				cv.put("is_concluded",1);
-				act.app.getDB().getReadableDatabase().update("provas_especialidade",cv,"_id="+id,null);
+				cv.put("is_concluded", 1);
+				act.app.getDB().getWritableDatabase().update("provas_especialidade", cv, "_id=" + id, null);
 			}
 
 			public void desassinar(){
 				ContentValues cv = new ContentValues();
 				cv.put("is_concluded",0);
-				act.app.getDB().getReadableDatabase().update("provas_especialidade",cv,"_id="+id,null);
+				act.app.getDB().getWritableDatabase().update("provas_especialidade", cv, "_id=" + id, null);
 			}
 		}
 	}

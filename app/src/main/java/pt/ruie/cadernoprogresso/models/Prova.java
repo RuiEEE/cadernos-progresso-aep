@@ -11,7 +11,7 @@ public class Prova extends Desafio {
 	}
 
 	public static Cursor getProvas(App app,int divisao,int etapa){
-		return app.getDB().getReadableDatabase().rawQuery("SELECT * FROM PROVAS WHERE divisao="+divisao+" AND etapa="+etapa, null);
+		return app.getDB().getWritableDatabase().rawQuery("SELECT * FROM PROVAS WHERE divisao="+divisao+" AND etapa="+etapa, null);
 	}
 
 	public void concluirProva(int id){
